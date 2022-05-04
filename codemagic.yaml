@@ -7,8 +7,6 @@ workflows:
         script: ./gradlew test
       - name: Build debug apk
         script: ./gradlew assembleDebug
-      - name: Build release apk
-        script: ./gradlew assembleRelease
     artifacts:
       - app/build/**/outputs/**/*.apk
     publishing:
