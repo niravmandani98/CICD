@@ -57,6 +57,7 @@ workflows:
       - name: Set up release keystore
         script: |
           echo "Hello World\n"
+          cat $CM_BUILD_DIR/base64.txt
           echo "$CM_BUILD_DIR/key.properties\n"
           echo "$CM_KEYSTORE_PASSWORD\n"
           echo "$CM_KEYSTORE_PASSWORD\n"
