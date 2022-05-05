@@ -63,10 +63,6 @@ workflows:
           keyAlias=$CM_KEY_ALIAS
           storeFile=C:\\Users\\PC\\Desktop\\cicd.jks
           EOF
-      - name: Run tests
-        script: |
-          ./gradlew test
-          ./gradlew connectedAndroidTest
       - name: Build release apk
         script: ./gradlew assembleRelease
 
