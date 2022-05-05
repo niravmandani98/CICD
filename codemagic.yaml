@@ -55,10 +55,10 @@ workflows:
             CM_KEYSTORE_PASSWORD: Encrypted(MTIzNDU2)
             CM_KEY_ALIAS_PASSWORD: Encrypted(MTIzNDU2)
             CM_KEY_ALIAS: key0
-        scripts:
+      scripts:
 
-          - name: Set up release keystore
-            script: |
+        - name: Set up release keystore
+          script: |
               echo $CM_KEYSTORE | base64 --decode > C:\\Users\\PC\\Desktop\\base64.txt
               cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
               storePassword=$CM_KEYSTORE_PASSWORD
@@ -66,14 +66,14 @@ workflows:
               keyAlias=$CM_KEY_ALIAS
               storeFile=C:\\Users\\PC\\Desktop\\cicd.jks
               EOF
-          - name: Run tests
-            script: |
+        - name: Run tests
+          script: |
               ./gradlew test
               ./gradlew connectedAndroidTest
-          - name: Build release apk
-            script: ./gradlew assembleRelease
+        - name: Build release apk
+          script: ./gradlew assembleRelease
 
-        artifacts:
+      artifacts:
           - app/build/**/outputs/**/*.apk
     publishing:
       email:
