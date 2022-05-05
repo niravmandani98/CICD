@@ -14,67 +14,67 @@ workflows:
         email:
           recipients:
             - sbis1999@gmail.com
-#      debug-workflow:
-#        name: Native Android
-#        max_build_duration: 60
-#        scripts:
-#          - name: Launching android emulator
-#            script: emulator -avd emulator > /dev/null 2>&1 &
-#
-#          - name: Set up debug keystore
-#            script: |
-#              rm -f ~/.android/debug.keystore
-#              keytool -genkeypair \
-#                -alias androiddebugkey \
-#                -keypass android \
-#                -keystore ~/.android/debug.keystore \
-#                -storepass android \
-#                -dname 'CN=Android Debug,O=Android,C=US' \
-#                -keyalg 'RSA' \
-#                -keysize 2048 \
-#                -validity 10000
-#          - name: Run tests
-#            script: |
-#              ./gradlew test
-#              ./gradlew connectedAndroidTest
-#          - name: Build debug apk
-#            script: ./gradlew assembleDebug
-#
-#        artifacts:
-#          - app/build/**/outputs/**/*.apk
-#        publishing:
-#          email:
-#            recipients:
-#              - sbis1999@gmail.com
-      release-workflow:
-        name: Native Android
-        max_build_duration: 60
-        environment:
-          vars:
-            CM_KEYSTORE: Encrypted(c3RvcmVQYXNzd29yZD0xMjM0NTYNCmtleVBhc3N3b3JkPTEyMzQ1Ng0Ka2V5QWxpYXM9a2V5MA0Kc3RvcmVGaWxlPUM6XFxVc2Vyc1xcUENcXERlc2t0b3BcXGNpY2QuamtzDQo=)
-            CM_KEYSTORE_PASSWORD: Encrypted(MTIzNDU2)
-            CM_KEY_ALIAS_PASSWORD: Encrypted(MTIzNDU2)
-            CM_KEY_ALIAS: key0
-      scripts:
+      #      debug-workflow:
+      #        name: Native Android
+      #        max_build_duration: 60
+      #        scripts:
+      #          - name: Launching android emulator
+      #            script: emulator -avd emulator > /dev/null 2>&1 &
+      #
+      #          - name: Set up debug keystore
+      #            script: |
+      #              rm -f ~/.android/debug.keystore
+      #              keytool -genkeypair \
+      #                -alias androiddebugkey \
+      #                -keypass android \
+      #                -keystore ~/.android/debug.keystore \
+      #                -storepass android \
+      #                -dname 'CN=Android Debug,O=Android,C=US' \
+      #                -keyalg 'RSA' \
+      #                -keysize 2048 \
+      #                -validity 10000
+      #          - name: Run tests
+      #            script: |
+      #              ./gradlew test
+      #              ./gradlew connectedAndroidTest
+      #          - name: Build debug apk
+      #            script: ./gradlew assembleDebug
+      #
+      #        artifacts:
+      #          - app/build/**/outputs/**/*.apk
+      #        publishing:
+      #          email:
+      #            recipients:
+      #              - sbis1999@gmail.com
+  release-workflow:
+    name: Native Android
+    max_build_duration: 60
+      environment:
+        vars:
+          CM_KEYSTORE: Encrypted(c3RvcmVQYXNzd29yZD0xMjM0NTYNCmtleVBhc3N3b3JkPTEyMzQ1Ng0Ka2V5QWxpYXM9a2V5MA0Kc3RvcmVGaWxlPUM6XFxVc2Vyc1xcUENcXERlc2t0b3BcXGNpY2QuamtzDQo=)
+          CM_KEYSTORE_PASSWORD: Encrypted(MTIzNDU2)
+          CM_KEY_ALIAS_PASSWORD: Encrypted(MTIzNDU2)
+          CM_KEY_ALIAS: key0
+    scripts:
 
-        - name: Set up release keystore
-          script: |
-              echo $CM_KEYSTORE | base64 --decode > C:\\Users\\PC\\Desktop\\base64.txt
-              cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
-              storePassword=$CM_KEYSTORE_PASSWORD
-              keyPassword=$CM_KEY_ALIAS_PASSWORD
-              keyAlias=$CM_KEY_ALIAS
-              storeFile=C:\\Users\\PC\\Desktop\\cicd.jks
-              EOF
-        - name: Run tests
-          script: |
-              ./gradlew test
-              ./gradlew connectedAndroidTest
-        - name: Build release apk
-          script: ./gradlew assembleRelease
+      - name: Set up release keystore
+        script: |
+          echo $CM_KEYSTORE | base64 --decode > C:\\Users\\PC\\Desktop\\base64.txt
+          cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_ALIAS_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=C:\\Users\\PC\\Desktop\\cicd.jks
+          EOF
+      - name: Run tests
+        script: |
+          ./gradlew test
+          ./gradlew connectedAndroidTest
+      - name: Build release apk
+        script: ./gradlew assembleRelease
 
-      artifacts:
-          - app/build/**/outputs/**/*.apk
+    artifacts:
+      - app/build/**/outputs/**/*.apk
     publishing:
       email:
         recipients:
