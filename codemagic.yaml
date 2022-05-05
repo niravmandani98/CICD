@@ -56,7 +56,6 @@ workflows:
 
       - name: Set up release keystore
         script: |
-          echo $CM_KEYSTORE | base64 --decode > $FCI_BUILD_DIR/base64.txt
           cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_ALIAS_PASSWORD
