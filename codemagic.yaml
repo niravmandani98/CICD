@@ -56,7 +56,12 @@ workflows:
 
       - name: Set up release keystore
         script: |
-          echo "Hello World"
+          echo "Hello World\n"
+          echo "$CM_BUILD_DIR/key.properties\n"
+          echo "$CM_KEYSTORE_PASSWORD\n"
+          echo "$CM_KEYSTORE_PASSWORD\n"
+          echo "$CM_KEY_ALIAS\n"
+          echo "$CM_BUILD_DIR\n"
           cat >> "$CM_BUILD_DIR/key.properties" <<EOF
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_PASSWORD
