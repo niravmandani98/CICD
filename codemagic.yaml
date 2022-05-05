@@ -60,7 +60,7 @@ workflows:
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_PASSWORD
           keyAlias=$CM_KEY_ALIAS
-          storeFile=$FCI_BUILD_DIR/cicd.jks
+          storeFile=$CM_BUILD_DIR/cicd.jks
           EOF
       - name: Build release apk
         script: ./gradlew assembleRelease
