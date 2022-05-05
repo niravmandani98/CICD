@@ -56,9 +56,9 @@ workflows:
 
       - name: Set up release keystore
         script: |
-          cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
+          cat >> "$CM_BUILD_DIR/key.properties" <<EOF
           storePassword=$CM_KEYSTORE_PASSWORD
-          keyPassword=$CM_KEY_ALIAS_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
           keyAlias=$CM_KEY_ALIAS
           storeFile=$FCI_BUILD_DIR/cicd.jks
           EOF
