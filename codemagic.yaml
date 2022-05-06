@@ -67,6 +67,7 @@ workflows:
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_PASSWORD
           keyAlias=$CM_KEY_ALIAS
+
           storeFile=$CM_BUILD_DIR/cicd.jks
           EOF
           echo $CM_KEYSTORE_PATH
